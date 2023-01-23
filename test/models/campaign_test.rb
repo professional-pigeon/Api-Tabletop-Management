@@ -1,6 +1,6 @@
 require "test_helper"
 
-class LocationTest < ActiveSupport::TestCase
+class CampaignTest < ActiveSupport::TestCase
   setup do
   end
   end
