@@ -15,7 +15,7 @@ require "test_helper"
 class SubLocationTest < ActiveSupport::TestCase
   test "create sublocation" do
     count = SubLocation.count
-    @location = create(:sub_location)
+    sub_location = create(:sub_location)
     assert_equal (count + 1), SubLocation.count
   end
 end
