@@ -19,7 +19,12 @@ class CharacterTest < ActiveSupport::TestCase
   test "create character attached to location" do
     location = create(:location)
     character = create(:character, char_place: location)
-    puts Location.count
     assert_equal location.characters.first.id, character.id
+  end
+
+  test "create character attaached to sublocation" do
+    sub_location = create(:sub_location)
+    character = create(:character, char_place: sub_location)
+    assert_equal sub_location.characters.first.id, character.id
   end
 end
