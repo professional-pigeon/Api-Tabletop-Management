@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_23_194627) do
+ActiveRecord::Schema.define(version: 2023_01_23_202507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,10 +18,23 @@ ActiveRecord::Schema.define(version: 2023_01_23_194627) do
   create_table "campaigns", force: :cascade do |t|
     t.string "name", null: false
     t.string "notes"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_campaigns_on_user_id"
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "type", null: false
+    t.string "species"
+    t.string "description"
+    t.string "notes"
+    t.string "char_place_type"
+    t.bigint "char_place_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["char_place_type", "char_place_id"], name: "index_characters_on_char_place_type_and_char_place_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -29,10 +42,20 @@ ActiveRecord::Schema.define(version: 2023_01_23_194627) do
     t.string "type", null: false
     t.string "description"
     t.string "notes"
-    t.bigint "campaigns_id"
+    t.bigint "campaigns_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["campaigns_id"], name: "index_locations_on_campaigns_id"
+  end
+
+  create_table "sub_locations", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.string "notes"
+    t.bigint "locations_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["locations_id"], name: "index_sub_locations_on_locations_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,4 +70,5 @@ ActiveRecord::Schema.define(version: 2023_01_23_194627) do
 
   add_foreign_key "campaigns", "users"
   add_foreign_key "locations", "campaigns", column: "campaigns_id"
+  add_foreign_key "sub_locations", "locations", column: "locations_id"
 end

@@ -5,7 +5,7 @@ class CreateLocations < ActiveRecord::Migration[6.0]
       t.string :type, null: false
       t.string :description
       t.string :notes
-      t.belongs_to :campaigns, foreign_key: true
+      t.references :campaigns, foreign_key: true, null: false
 
 
       t.timestamps

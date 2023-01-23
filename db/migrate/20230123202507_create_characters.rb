@@ -6,8 +6,9 @@ class CreateCharacters < ActiveRecord::Migration[6.0]
       t.string :species
       t.string :description
       t.string :notes
-      t.belongs_to :locations, foreign_key: true
+      t.references :char_place, polymorphic: true
 
       t.timestamps
     end
+  end
 end
