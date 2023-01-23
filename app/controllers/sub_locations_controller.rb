@@ -1,10 +1,10 @@
-class UsersController < ApplicationController
+class SubLocationsController < ApplicationController
   def index
   end
 
   def show
   end
-
+  
   def create
   end
 
