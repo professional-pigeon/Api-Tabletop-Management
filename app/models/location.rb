@@ -12,4 +12,7 @@
 #  updated_at   :datetime         not null
 #
 class Location < ApplicationRecord
+  belongs_to :campaigns
+  has_many :sub_locations
+  has_many :characters, as: :char_place
 end

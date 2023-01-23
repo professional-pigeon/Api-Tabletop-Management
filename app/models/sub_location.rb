@@ -11,4 +11,6 @@
 #  updated_at   :datetime         not null
 #
 class SubLocation < ApplicationRecord
+  belongs_to :locations
+  has_many :characters, as: :char_place
 end

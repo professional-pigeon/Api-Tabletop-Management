@@ -14,4 +14,5 @@
 #  updated_at      :datetime         not null
 #
 class Character < ApplicationRecord
+  belongs_to :char_place, polymorphic: true
 end
