@@ -13,9 +13,9 @@
 #
 FactoryBot.define do
   factory :location do
-    campaign { build(:campaign) }
+    campaign { create(:campaign) }
     name { 'test_location' }
-    type { 'city' }
+    location_type { 'city' }
     description { 'Location description' }
     notes { 'These are the location notes' }
   end

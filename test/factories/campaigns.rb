@@ -11,7 +11,7 @@
 #
 FactoryBot.define do
   factory :campaign do
-    user { build(:user) }
+    user { create(:user) }
     name { 'test_campaign' }
     notes { 'These are the campaign notes' }
   end

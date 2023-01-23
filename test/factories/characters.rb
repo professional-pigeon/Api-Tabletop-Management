@@ -13,3 +13,12 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
+FactoryBot.define do
+  factory :character do
+    name { 'tom' }
+    character_type { 'npc' }
+    species { 'aarakocra' }
+    description { 'character description' }
+    notes { 'These are the characters notes' }
+  end
+end

@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2023_01_23_202507) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name", null: false
-    t.string "type", null: false
+    t.string "character_type", null: false
     t.string "species"
     t.string "description"
     t.string "notes"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2023_01_23_202507) do
 
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
-    t.string "type", null: false
+    t.string "location_type", null: false
     t.string "description"
     t.string "notes"
     t.bigint "campaign_id", null: false

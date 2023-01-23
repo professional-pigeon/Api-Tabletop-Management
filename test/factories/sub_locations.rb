@@ -10,12 +10,11 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-require "test_helper"
-
-class SubLocationTest < ActiveSupport::TestCase
-  test "create sublocation" do
-    count = SubLocation.count
-    @location = create(:sub_location)
-    assert_equal (count + 1), SubLocation.count
+FactoryBot.define do
+  factory :sub_location do
+    location { create(:location) }
+    name { 'test_sub_location' }
+    description { 'Sub Location description' }
+    notes { 'These are the sub location notes' }
   end
 end

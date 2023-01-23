@@ -1,12 +1,15 @@
 ENV['RAILS_ENV'] ||= 'test'
 
+require 'database_cleaner/active_record'
+
+DatabaseCleaner.strategy = :truncation
+
+
+Rails.application.load_seed
+
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
-  setup do
-    # In some instances, in particular generating commodity names,
-    # Faker simply runs out of unique fruit names and raises an Exception.
-    # Clearing it in the setup phase of every test instance seems to
-    # avoid this.
-    Faker::UniqueGenerator.clear
+  teardown do
+    DatabaseCleaner.clean
   end
 end
