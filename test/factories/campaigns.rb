@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: campaigns
+#
+#  id         :bigint           not null, primary key
+#  name       :string           not null
+#  notes      :string
+#  user_id    :bigint           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+FactoryBot.define do
+  factory :campaign do
+    user { build(:user) }
+    name { 'test_campaign' }
+    notes { 'These are the campaign notes' }
+  end
+end

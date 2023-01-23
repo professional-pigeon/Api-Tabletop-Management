@@ -42,20 +42,20 @@ ActiveRecord::Schema.define(version: 2023_01_23_202507) do
     t.string "type", null: false
     t.string "description"
     t.string "notes"
-    t.bigint "campaigns_id", null: false
+    t.bigint "campaign_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["campaigns_id"], name: "index_locations_on_campaigns_id"
+    t.index ["campaign_id"], name: "index_locations_on_campaign_id"
   end
 
   create_table "sub_locations", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
     t.string "notes"
-    t.bigint "locations_id"
+    t.bigint "location_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["locations_id"], name: "index_sub_locations_on_locations_id"
+    t.index ["location_id"], name: "index_sub_locations_on_location_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,6 +69,6 @@ ActiveRecord::Schema.define(version: 2023_01_23_202507) do
   end
 
   add_foreign_key "campaigns", "users"
-  add_foreign_key "locations", "campaigns", column: "campaigns_id"
-  add_foreign_key "sub_locations", "locations", column: "locations_id"
+  add_foreign_key "locations", "campaigns"
+  add_foreign_key "sub_locations", "locations"
 end
