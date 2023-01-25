@@ -24,4 +24,11 @@ class CampaignsControllerTest < ActionDispatch::IntegrationTest
     assert_equal parsed_response['name'], 'Iago 2'
     assert_equal parsed_response['notes'], 'test'
   end
+
+  test "will update single campaign" do
+    campaign = create(:campaign, name: 'Iago 2', notes: 'test', user: @user)
+    patch campaign_path(id: campaign.id, name: 'Iago 3')
+    assert_equal parsed_response['name'], 'Iago 3'
+    assert_equal parsed_response['notes'], 'test'
+  end
 end

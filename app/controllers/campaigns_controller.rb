@@ -14,8 +14,16 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    campaign_params(params)
-    campaign = Campaign.create(@campaign_params)
+    create_params(params)
+    campaign = Campaign.create(@create_params)
+    serialized_campaign = CampaignBlueprint.render(campaign)
+    render json: serialized_campaign
+  end
+
+  def update
+    update_params(params)
+    campaign = Campaign.find(params[:id])
+    campaign.update(@update_params)
     serialized_campaign = CampaignBlueprint.render(campaign)
     render json: serialized_campaign
   end
@@ -23,12 +31,13 @@ class CampaignsController < ApplicationController
   def destroy
   end
 
-  def update
-  end
-
   private
 
-  def campaign_params(params)
-    @campaign_params ||= params.permit(:name, :notes, :user_id)
+  def create_params(params)
+    @create_params ||= params.permit(:name, :notes, :user_id)
+  end
+
+  def update_params(params)
+    @update_params ||= params.permit(:name, :notes)
   end
 end
