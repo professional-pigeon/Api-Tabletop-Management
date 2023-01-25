@@ -7,6 +7,10 @@ class CampaignsController < ApplicationController
   end
 
   def show
+    ## set up permissions scheme
+    campaign = Campaign.find(params[:id])
+    serialized_campaign = CampaignBlueprint.render(campaign)
+    render json: serialized_campaign
   end
 
   def create
@@ -16,5 +20,11 @@ class CampaignsController < ApplicationController
   end
 
   def update
+  end
+
+  private
+
+  def campaign_params(params)
+    @campaign_params ||= params.permit(:name, :notes, :user_id)
   end
 end
