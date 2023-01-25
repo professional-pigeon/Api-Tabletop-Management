@@ -2,7 +2,8 @@ class CampaignsController < ApplicationController
   def index
     user = User.find(params[:user_id])
     campaigns = user.campaigns
-    render :json => campaigns
+    serialized_campaigns = CampaignBlueprint.render(campaigns)
+    render json: serialized_campaigns
   end
 
   def show

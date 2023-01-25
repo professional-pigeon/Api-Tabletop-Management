@@ -17,3 +17,23 @@ class ActiveSupport::TestCase
     DatabaseCleaner.clean
   end
 end
+
+class ActionDispatch::IntegrationTest
+  include FactoryBot::Syntax::Methods
+
+  setup do
+    DatabaseCleaner.start
+  end
+  teardown do
+    DatabaseCleaner.clean
+  end
+
+  def parsed_response
+    parsed = JSON.parse(response.body)
+    if parsed.is_a?(Hash)
+      parsed.with_indifferent_access
+    else
+      parsed
+    end
+  end
+end
