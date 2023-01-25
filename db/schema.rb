@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2023_01_23_202507) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string "name", null: false
-    t.string "notes"
+    t.string "notes", default: ""
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 2023_01_23_202507) do
   create_table "characters", force: :cascade do |t|
     t.string "name", null: false
     t.string "character_type", null: false
-    t.string "species"
-    t.string "description"
-    t.string "notes"
+    t.string "character_race", default: "unknown"
+    t.string "description", default: ""
+    t.string "notes", default: ""
     t.string "char_place_type"
     t.bigint "char_place_id"
     t.datetime "created_at", precision: 6, null: false
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 2023_01_23_202507) do
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
     t.string "location_type", null: false
-    t.string "description"
-    t.string "notes"
+    t.string "description", default: ""
+    t.string "notes", default: ""
     t.bigint "campaign_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 2023_01_23_202507) do
 
   create_table "sub_locations", force: :cascade do |t|
     t.string "name", null: false
-    t.string "description"
-    t.string "notes"
+    t.string "description", default: ""
+    t.string "notes", default: ""
     t.bigint "location_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

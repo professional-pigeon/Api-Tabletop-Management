@@ -4,10 +4,10 @@
 #
 #  id              :bigint           not null, primary key
 #  name            :string           not null
-#  type            :string           not null
-#  species         :string
-#  description     :string
-#  notes           :string
+#  character_type  :string           not null
+#  character_race  :string           default("unknown")
+#  description     :string           default("")
+#  notes           :string           default("")
 #  char_place_type :string
 #  char_place_id   :bigint
 #  created_at      :datetime         not null
@@ -17,7 +17,7 @@ FactoryBot.define do
   factory :character do
     name { 'tom' }
     character_type { 'npc' }
-    species { 'aarakocra' }
+    character_race { 'aarakocra' }
     description { 'character description' }
     notes { 'These are the characters notes' }
   end
