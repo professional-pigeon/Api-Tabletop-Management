@@ -2,30 +2,30 @@ class LocationsController < ApplicationController
   def index
     campaign = Campaign.find(params[:campaign_id])
     locations = campaign.locations
-    serialized_locations = LocationBlueprint.render(locations)
-    render json: serialized_locations
+    serialized_res = LocationBlueprint.render(locations)
+    render json: serialized_res
   end
 
   def show
     ## set up permissions scheme
     location = Location.find(params[:id])
-    serialized_location = LocationBlueprint.render(location)
-    render json: serialized_location
+    serialized_res = LocationBlueprint.render(location)
+    render json: serialized_res
   end
 
   def create
     create_params(params)
     location = Location.create(@create_params)
-    serialized_location = LocationBlueprint.render(location)
-    render json: serialized_location
+    serialized_res = LocationBlueprint.render(location)
+    render json: serialized_res
   end
 
   def update
     update_params(params)
     location = Location.find(params[:id])
     location.update(@update_params)
-    serialized_location = LocationBlueprint.render(location)
-    render json: serialized_location
+    serialized_res = LocationBlueprint.render(location)
+    render json: serialized_res
   end
 
   def destroy

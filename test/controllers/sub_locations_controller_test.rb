@@ -25,7 +25,7 @@ class SubLocationsControllerTest < ActionDispatch::IntegrationTest
 
   test "will update single sub_location" do
     sub_location = create(:sub_location, name: 'A bar', notes: 'test', location: @location)
-    patch location_path(id: sub_location.id, name: 'An inn')
+    patch sub_location_path(id: sub_location.id, name: 'An inn')
     assert_equal parsed_response['name'], 'An inn'
     assert_equal parsed_response['notes'], 'test'
   end
@@ -34,6 +34,6 @@ class SubLocationsControllerTest < ActionDispatch::IntegrationTest
     sub_location = create(:sub_location)
     delete sub_location_path(id: sub_location.id)
     assert_response :success
-    assert_equal Location.count, 0
+    assert_equal SubLocation.count, 0
   end
 end

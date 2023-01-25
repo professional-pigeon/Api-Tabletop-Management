@@ -2,30 +2,30 @@ class CampaignsController < ApplicationController
   def index
     user = User.find(params[:user_id])
     campaigns = user.campaigns
-    serialized_campaigns = CampaignBlueprint.render(campaigns)
-    render json: serialized_campaigns
+    serialized_res = CampaignBlueprint.render(campaigns)
+    render json: serialized_res
   end
 
   def show
     ## set up permissions scheme
     campaign = Campaign.find(params[:id])
-    serialized_campaign = CampaignBlueprint.render(campaign)
-    render json: serialized_campaign
+    serialized_res = CampaignBlueprint.render(campaign)
+    render json: serialized_res
   end
 
   def create
     create_params(params)
     campaign = Campaign.create(@create_params)
-    serialized_campaign = CampaignBlueprint.render(campaign)
-    render json: serialized_campaign
+    serialized_res = CampaignBlueprint.render(campaign)
+    render json: serialized_res
   end
 
   def update
     update_params(params)
     campaign = Campaign.find(params[:id])
     campaign.update(@update_params)
-    serialized_campaign = CampaignBlueprint.render(campaign)
-    render json: serialized_campaign
+    serialized_res = CampaignBlueprint.render(campaign)
+    render json: serialized_res
   end
 
   def destroy
