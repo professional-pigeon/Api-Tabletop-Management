@@ -31,4 +31,11 @@ class CampaignsControllerTest < ActionDispatch::IntegrationTest
     assert_equal parsed_response['name'], 'Iago 3'
     assert_equal parsed_response['notes'], 'test'
   end
+
+  test "will destroy single campaign" do
+    campaign = create(:campaign, user: @user)
+    delete campaign_path(id: campaign.id)
+    assert_response :success
+    assert_equal Campaign.count, 0
+  end
 end

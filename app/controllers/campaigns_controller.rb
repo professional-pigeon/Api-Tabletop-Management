@@ -29,6 +29,9 @@ class CampaignsController < ApplicationController
   end
 
   def destroy
+    campaign = Campaign.find(params[:id])
+    campaign.destroy
+    head :ok
   end
 
   private
