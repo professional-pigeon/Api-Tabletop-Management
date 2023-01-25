@@ -14,6 +14,10 @@ class CampaignsController < ApplicationController
   end
 
   def create
+    campaign_params(params)
+    campaign = Campaign.create(@campaign_params)
+    serialized_campaign = CampaignBlueprint.render(campaign)
+    render json: serialized_campaign
   end
 
   def destroy

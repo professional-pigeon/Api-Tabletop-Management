@@ -16,7 +16,12 @@ class CampaignsControllerTest < ActionDispatch::IntegrationTest
     campaign = create(:campaign, name: 'Iago 2', notes: 'test', user: @user)
     get campaign_path(id: campaign.id)
     assert_equal parsed_response['name'], 'Iago 2'
-    byebug
+    assert_equal parsed_response['notes'], 'test'
+  end
+
+  test "will create a single campaign attached to user" do
+    post campaigns_path(name: 'Iago 2', notes: 'test', user_id: @user.id)
+    assert_equal parsed_response['name'], 'Iago 2'
     assert_equal parsed_response['notes'], 'test'
   end
 end
