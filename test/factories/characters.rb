@@ -20,5 +20,6 @@ FactoryBot.define do
     character_race { 'aarakocra' }
     description { 'character description' }
     notes { 'These are the characters notes' }
+    char_place { create(:location) }
   end
 end
