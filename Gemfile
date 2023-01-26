@@ -5,6 +5,7 @@ ruby '2.7.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'annotate'
+gem 'bcrypt'
 gem 'blueprinter'
 gem 'faker'
 gem 'rails', '~> 6.0.6', '>= 6.0.6.1'
