@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :users, only: %i[index create show update destroy]
-  resources :campaigns, only: %i[index create show update destroy]
+  resources :users, only: %i[create login]
+  resources :campaigns, only: %i[create show update destroy]
+  get '/users/campaigns/:id', to: 'campaigns#index'
   resources :locations, only: %i[index create show update destroy]
   resources :sub_locations, only: %i[index create show update destroy]
   resources :characters, only: %i[index create show update destroy]
