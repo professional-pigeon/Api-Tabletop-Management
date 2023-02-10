@@ -6,7 +6,7 @@ class CampaignsControllerTest < ActionDispatch::IntegrationTest
   test "should get all of a users campaigns" do
     create(:campaign, name: 'Iago', user: @user)
     create(:campaign, user: @user)
-    get campaigns_path(user_id: @user.id)
+    get "/user/campaigns/#{@user.id}"
     assert_response :success
     assert_equal parsed_response.count, 2
     assert_equal parsed_response.first['name'], 'Iago'
