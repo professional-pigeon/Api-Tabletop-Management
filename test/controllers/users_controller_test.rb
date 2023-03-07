@@ -13,6 +13,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should log in a user" do
     post auth_login_path(user_name: 'test_user', password: 'yada123')
     assert_response :success
+    assert_not_nil parsed_response['token']
   end
 
   test "should reject a login with bad password" do
