@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = User.find_by_email(params[:email])
+    @user = User.find_by_user_name(params[:user_name])
     if @user.password == params[:password]
       render status: :ok, json: { message: 'you have logged in'}
     else
