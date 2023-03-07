@@ -1,4 +1,6 @@
 class CampaignsController < ApplicationController
+  before_action :authorize_request
+
   def index
     user = User.find(params[:id])
     campaigns = user.campaigns
