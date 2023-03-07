@@ -22,4 +22,8 @@ class User < ApplicationRecord
     @password = Password.create(new_password)
     self.password_digest = @password
   end
+
+  def auth(password)
+    self.password == password
+  end
 end

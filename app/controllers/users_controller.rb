@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authorize_request, except: :create
+
   def index
   end
 
@@ -10,15 +12,6 @@ class UsersController < ApplicationController
     @user = User.new(@create_params)
     @user.password = params[:password]
     @user.save!
-  end
-
-  def login
-    @user = User.find_by_user_name(params[:user_name])
-    if @user.password == params[:password]
-      render status: :ok, json: { message: 'you have logged in'}
-    else
-      render status: 401, json: { error_code: 401, message: 'incorrect password or email' }
-    end
   end
 
   def destroy
