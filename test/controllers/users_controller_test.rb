@@ -14,4 +14,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     post user_login_path(user_name: 'test_user', password: 'yada123')
     assert_response :success
   end
+
+  test "should reject a login with bad password" do
+    post user_login_path(user_name: 'test_user', password: 'ya123')
+    assert_response 401
+  end
 end
