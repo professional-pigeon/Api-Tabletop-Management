@@ -11,8 +11,8 @@
 #
 FactoryBot.define do
   factory :user do
-    user_name { Faker::Name.unique.name }
-    email { Faker::Food.unique.fruits }
+    sequence(:user_name) { |n| "user#{n}" }
+    sequence(:email) { |n| "user#{n}@user.com" }
     password_digest { 'test123' }
   end
 end
