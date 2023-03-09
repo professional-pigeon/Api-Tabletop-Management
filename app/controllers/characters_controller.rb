@@ -1,4 +1,6 @@
 class CharactersController < ApplicationController
+  before_action :authorize_request
+
   def index
     find_char_place(params[:char_place_type], params[:char_place_id])
     characters = @place.characters

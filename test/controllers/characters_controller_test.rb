@@ -1,6 +1,8 @@
 class CharactersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @campaign = create(:campaign)
+    @user = create(:user)
+    sign_in_as(@user)
+    @campaign = create(:campaign, user: @user)
     @location = create(:location, campaign: @campaign)
     @sub_location = create(:sub_location, location: @location)
   end
