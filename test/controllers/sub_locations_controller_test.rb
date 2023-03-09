@@ -1,5 +1,8 @@
 class SubLocationsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @user = create(:user)
+    sign_in_as(@user)
+    @campaign = create(:campaign, user: @user)
     @location = create(:location)
   end
 

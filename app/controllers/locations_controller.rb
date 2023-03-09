@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+  before_action :authorize_request
+
   def index
     campaign = Campaign.find(params[:campaign_id])
     locations = campaign.locations

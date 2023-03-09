@@ -1,4 +1,6 @@
 class SubLocationsController < ApplicationController
+  before_action :authorize_request
+
   def index
     location = Location.find(params[:location_id])
     sub_locations = location.sub_locations

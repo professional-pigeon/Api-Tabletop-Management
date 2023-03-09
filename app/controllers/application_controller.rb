@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
         render json: { errors: e.message }, status: :unauthorized
       end
     else 
-      render json: { errors: 'not logged in'}, status: :unauthorized
+      render json: { errors: 'not logged in' }, status: :unauthorized
     end
   end
 end

@@ -1,6 +1,8 @@
 class LocationsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @campaign = create(:campaign)
+    @user = create(:user)
+    sign_in_as(@user)
+    @campaign = create(:campaign, user: @user)
   end
 
   test "should get all of a campaigns locations" do
