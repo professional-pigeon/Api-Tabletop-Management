@@ -1,19 +1,19 @@
 class ApplicationController < ActionController::Base
+  skip_before_action :verify_authenticity_token
 
   def not_found
     render json: { error: 'not_found' }
   end
 
   def authorize_request
-    header = request.headers['Authorization']
-    header = header.split(' ').last if header
-    begin
-      @decoded = JsonWebToken.decode(header)
-      @current_user = User.find(@decoded[:user_id])
-    rescue ActiveRecord::RecordNotFound => e
-      render json: { errors: e.message }, status: :unauthorized
-    rescue JWT::DecodeError => e
-      render json: { errors: e.message }, status: :unauthorized
+    if session[:user_id]
+      begin 
+        @user = User.find(session[:user_id])
+      rescue ActiveRecord::RecordNotFound => e
+        render json: { errors: e.message }, status: :unauthorized
+      end
+    else 
+      render json: { errors: 'not logged in'}, status: :unauthorized
     end
   end
 end
