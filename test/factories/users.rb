@@ -13,6 +13,6 @@ FactoryBot.define do
   factory :user do
     sequence(:user_name) { |n| "user#{n}" }
     sequence(:email) { |n| "user#{n}@user.com" }
-    password_digest { 'test123' }
+    password {'mUc3m00RsqyRe' }
   end
 end
