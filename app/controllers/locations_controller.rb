@@ -16,10 +16,15 @@ class LocationsController < ApplicationController
   end
 
   def create
+    byebug
     create_params(params)
-    location = Location.create(@create_params)
-    serialized_res = LocationBlueprint.render(location)
-    render json: serialized_res
+    location = Location.new(@create_params)
+    if location.save
+      serialized_res = LocationBlueprint.render(location)
+      render json: serialized_res
+    else
+      render json: { error: 'unauthorized but here is the mistake' }, status: :unauthorized
+    end
   end
 
   def update
