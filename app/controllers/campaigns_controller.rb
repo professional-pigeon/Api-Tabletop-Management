@@ -2,7 +2,7 @@ class CampaignsController < ApplicationController
   before_action :authorize_request
 
   def index
-    user = User.find(params[:id])
+    user = User.find(session[:user_id])
     campaigns = user.campaigns
     serialized_res = CampaignBlueprint.render(campaigns)
     render json: serialized_res
@@ -11,14 +11,14 @@ class CampaignsController < ApplicationController
   def show
     ## set up permissions scheme
     campaign = Campaign.find(params[:id])
-    serialized_res = CampaignBlueprint.render(campaign)
+    serialized_res = CampaignBlueprint.render(campaign, view: :full)
     render json: serialized_res
   end
 
   def create
     create_params(params)
     campaign = Campaign.create(@create_params)
-    serialized_res = CampaignBlueprint.render(campaign)
+    serialized_res = CampaignBlueprint.render(campaign, view: :full)
     render json: serialized_res
   end
 
@@ -26,7 +26,7 @@ class CampaignsController < ApplicationController
     update_params(params)
     campaign = Campaign.find(params[:id])
     campaign.update(@update_params)
-    serialized_res = CampaignBlueprint.render(campaign)
+    serialized_res = CampaignBlueprint.render(campaign, view: :full)
     render json: serialized_res
   end
 

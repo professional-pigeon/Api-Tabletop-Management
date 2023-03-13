@@ -2,5 +2,8 @@ class CampaignBlueprint < Blueprinter::Base
   identifier :id
 
   fields :name, :notes
-  association :locations, blueprint: LocationBlueprint, view: :with_sub_locations
+
+  view :full do
+    association :locations, blueprint: LocationBlueprint, view: :with_sub_locations
+  end
 end
